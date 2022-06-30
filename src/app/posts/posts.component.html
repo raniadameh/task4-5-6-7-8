@@ -1,0 +1,36 @@
+<p>posts works!</p>
+<div *ngIf="viewPost">
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>text</td>
+                <td>image</td>
+                <td>likes </td>
+                <td>tags </td>
+                <td>publishDate </td>
+                <td>owner </td>
+            </tr>
+        </thead>
+        <tbody *ngIf="viewPost">
+            <tr *ngFor="let v of viewPost.data">
+                <td>{{v.id}}</td>
+                <td>{{v.text}}</td>
+                <td>{{v.image}}</td>
+                <td>{{v.likes}}</td>
+                <td>{{v.tags}}</td>
+                <td>{{v.publishDate}}</td>
+                <td>{{v.owner|json}}</td>
+                <td>
+                    <div><button (click)="updatePost(v.id)" class="btn btn-warning">Update Post</button></div>
+                </td>
+                <td>
+                    <div><button (click)="deletePost(v.id)" class="btn btn-danger">Delete Post</button></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <button (click)="createPosts()" class="btn btn-success">Create Post</button>
+</div>
