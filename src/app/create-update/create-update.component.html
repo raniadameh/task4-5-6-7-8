@@ -1,0 +1,52 @@
+<div>
+    <form #createForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group m-2">
+            <label for="Fname">First Name</label>
+            <input #Fname="ngModel" type="text" class="form-control" id="Fname" [required]=create [(ngModel)]="countF"
+                name="First">
+            <div class="alert alert-danger m-1" [class.d-none]="Fname.valid || Fname.untouched">First Name is required
+            </div>
+        </div>
+        <div class="form-group m-2">
+            <label for="Lname">Last Name</label>
+            <input #Lname="ngModel" type="text" class="form-control" id="Lname" [required]=create [(ngModel)]="countL"
+                name="Last">
+            <div class="alert alert-danger m-1" [class.d-none]="Lname.valid || Lname.untouched">Last Name is required
+            </div>
+        </div>
+        <div class="form-group m-2">
+            <label for="name">Email</label>
+            <input [disabled]="update" #email="ngModel" type="email" class="form-control" id="email" required
+                [(ngModel)]="countEmail" name="email">
+            <div class="alert alert-danger m-1" [class.d-none]="email.valid || email.untouched">Email is required</div>
+        </div>
+        <div *ngIf="update" class="m-2">
+            <label for="title">Title</label>
+            <select name="title" id="title" class="form-control" [(ngModel)]="title">
+                <option *ngFor="let title of titles" [value]="title">{{ title }}</option>
+            </select>
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" class="form-control" [(ngModel)]="gender">
+                <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+            </select>
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" [(ngModel)]="birthday">
+            <br><br>
+            <label for="phone">Phone</label>
+            <input type="phone" id="phone" name="phone" [(ngModel)]="phone">
+            <br><br>
+            <!-- <label for="picture">Picture</label>
+            <input type="image" id="picture" name="picture" [(ngModel)]="picture"> -->
+        </div>
+        <div class="form-group m-2">
+            <input disabled="submitted" type="submit" [disabled]="createForm.form.invalid " value="Submit"
+                class="btn btn-success">
+            <input type="button" value="Back" (click)="back()" class="btn btn-dark m-2">
+        </div>
+    </form>
+    <div *ngIf="sub" class="alert alert-success m-4"> User Created Successful</div>
+    <div *ngIf="done" class="alert alert-danger m-4"> {{err}}</div>
+    <div *ngIf="sub1" class="alert alert-success m-4"> User Updated Successful</div>
+    <div *ngIf="done1" class="alert alert-danger m-4"> {{err}}</div>
+
+</div>

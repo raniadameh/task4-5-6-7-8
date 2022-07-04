@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
+import { CreateUpdateComponent } from './create-update/create-update.component';
 import { DetailsComponent } from './details/details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'home-page', component: HomePageComponent },
   { path: 'about-us', component: AboutUsPageComponent },
   { path: 'users', component: UsersPageComponent },
+  { path: 'create-update', component: CreateUpdateComponent },
+  { path: 'create-update/:id', component: CreateUpdateComponent },
   {
     path: 'user-details/:id', component: UserDetailsPageComponent,
     children: [

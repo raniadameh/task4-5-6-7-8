@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserDetailsPageComponent } from './user-details-page/user-details-page.component';
 import { DetailsComponent } from './details/details.component';
 import { PostsComponent } from './posts/posts.component';
+import { CreateUpdateComponent } from './create-update/create-update.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,13 +23,14 @@ import { PostsComponent } from './posts/posts.component';
     PageNotFoundComponent,
     UserDetailsPageComponent,
     DetailsComponent,
-    PostsComponent
-
+    PostsComponent,
+    CreateUpdateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

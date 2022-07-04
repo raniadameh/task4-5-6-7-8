@@ -38,28 +38,10 @@ export class UsersPageComponent implements OnInit {
     this.router.navigate(['user-details', `${id}`], { queryParams: { id: id } });
   }
   createUser() {
-    this.c++; console.log(this.c);
-    this.countF = "firstName " + this.c;
-    this.countL = "lastName " + this.c;
-    this.countEmail = "user" + this.c + "@gmail.com";
-    this.usersService.createUser({ firstName: this.countF, lastName: this.countL, email: this.countEmail })
-      .subscribe({
-        next: response => {
-          console.log(response),
-            this.getUsers()
-        },
-        error: (err) => console.log('Error Occurred (subscribe):', err),
-      });
+    this.router.navigate(['/create-update'], { relativeTo: this.activatedRoute });
   }
   updateUser(id: string) {
-    const newAccount = {
-      firstName: "updated firstName ",
-      lastName: "updated lastName ",
-    };
-    this.usersService.updateUser(id, newAccount).subscribe(response => {
-      console.log(response),
-        this.getUsers()
-    });
+    this.router.navigate(['/create-update', `${id}`], { queryParams: { id: id } });
   }
   deleteUser(id: string) {
     this.usersService.deleteUser(id).subscribe(response => {
