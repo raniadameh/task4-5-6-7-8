@@ -11,7 +11,10 @@ import { UserDetailsPageComponent } from './user-details-page/user-details-page.
 import { DetailsComponent } from './details/details.component';
 import { PostsComponent } from './posts/posts.component';
 import { CreateUpdateComponent } from './create-update/create-update.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateUpdateUserReactiveComponent } from './create-update-user-reactive/create-update-user-reactive.component';
+import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
+import { IdentityRevealedDirective } from './directives/identity-revealed.directive';
 
 
 @NgModule({
@@ -25,12 +28,16 @@ import { FormsModule } from '@angular/forms';
     DetailsComponent,
     PostsComponent,
     CreateUpdateComponent,
+    CreateUpdateUserReactiveComponent,
+    CreateUpdatePostComponent,
+    IdentityRevealedDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

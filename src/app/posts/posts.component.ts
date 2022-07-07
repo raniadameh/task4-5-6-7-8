@@ -22,10 +22,10 @@ export class PostsComponent implements OnInit {
   owner!: string;
   tags !: Array<string>
   link!: string;
-  constructor(private postsService: UserPostsService, private route: ActivatedRoute) { }
+  constructor(private postsService: UserPostsService, private router: Router, private activatedRoute: ActivatedRoute) { }
   id !: string;
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => this.id = params['id'],);
+    this.activatedRoute.queryParams.subscribe(params => this.id = params['id'],);
     this.getPostsId(this.id);
     // console.log("HELLO FROM POSTS COMPONENT ID =", this.id)
   }
@@ -44,38 +44,11 @@ export class PostsComponent implements OnInit {
     });
   }
   createPosts() {
-    this.c++;
-    this.text = "hello from post " + this.c;
-    this.image = "image" + this.c;
-    this.tags = ["ahmad " + this.c, "mahmoud" + this.c];
-    this.likes = 5;
-    this.owner = "owner" + this.c;
-    this.postsService.createPost({
-      text: this.text,
-      image: this.image,
-      tags: this.tags,
-      likes: this.likes,
-      owner: this.id
-    })
-      .subscribe({
-        next: response => {
-          console.log("created post", response),
-            this.getPostsId(this.id)
-        },
-        error: (err) => console.log('Error Occurred (subscribe):', err),
-      });
+    this.router.navigate(['/create-update-post'], { queryParams: { ownerId: this.id } });
+
   }
-  updatePost(id: string) {
-    const newPost = {
-      text: " Updated text",
-      image: " Updated image",
-      likes: 9,
-    };
-    this.postsService.updatePost(id, newPost).subscribe(response => {
-      console.log(response),
-        this.getPostsId(this.id)
-      // this.getUserId(id)
-    });
+  updatePost(post: string) {
+    this.router.navigate(['/create-update-post'], { queryParams: { ownerId: this.id, postId: post } });
   }
   deletePost(id: string) {
     this.postsService.deletePost(id).subscribe(response => {

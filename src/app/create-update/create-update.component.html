@@ -29,14 +29,10 @@
             <select name="gender" id="gender" class="form-control" [(ngModel)]="gender">
                 <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
             </select>
-            <label for="birthday">Birthday</label>
-            <input type="date" id="birthday" name="birthday" [(ngModel)]="birthday">
             <br><br>
             <label for="phone">Phone</label>
             <input type="phone" id="phone" name="phone" [(ngModel)]="phone">
             <br><br>
-            <!-- <label for="picture">Picture</label>
-            <input type="image" id="picture" name="picture" [(ngModel)]="picture"> -->
         </div>
         <div class="form-group m-2">
             <input disabled="submitted" type="submit" [disabled]="createForm.form.invalid " value="Submit"

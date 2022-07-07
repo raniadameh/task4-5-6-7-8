@@ -13,6 +13,13 @@ export class UserPostsService {
     headers: new HttpHeaders().set('app-id', '62b95602e20e2d43f1dfc3fb'),
   };
   constructor(private http: HttpClient) { }
+  getmyPost(id: string): Observable<Post> {
+    return this.http.get<Post>(`${this.baseURL}/post/${id}`, {
+      ...this.options
+      ,
+      params: { created: 1 }
+    });
+  }
   getPosts(): Observable<List<PostPreview>> {
     return this.http.get<List<PostPreview>>(`${this.baseURL}/post`, {
       ...this.options

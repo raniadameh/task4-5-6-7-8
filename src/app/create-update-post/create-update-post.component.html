@@ -1,0 +1,29 @@
+<p>create-update-post works!</p>
+<div>
+    <form (ngSubmit)="onSubmit()" *ngIf="postForm" [formGroup]="postForm">
+        <div class="form-group m-2">
+            <label for="owner">Owner ID</label>
+            <input type="text" class="form-control" required id="image" formControlName="owner" name="owner">
+            <label for="Fname">Post Text</label>
+            <input type="text" required class="form-control" id="text" formControlName="text" name="text">
+            <div *ngIf="!text?.valid && text?.touched" class="alert alert-danger m-1">
+                <div *ngIf="text?.errors?.['minlength']">Post at least 6 letters
+                </div>
+                <div *ngIf="text?.errors?.['required']"> text is required.
+                </div>
+            </div>
+
+            <label for="image">Image</label>
+            <input type="text" class="form-control" id="image" formControlName="image" name="image">
+            <label for="Fname">Likes</label>
+            <input type="text" class="form-control" id="likes" formControlName="likes" name="likes">
+            <label for="Fname">Tages</label>
+            <input type="text" class="form-control" id="tages" formControlName="tages" name="tages">
+            <div class="form-group m-2">
+                <input type="submit" value="Submit" class="btn btn-success">
+                <input type="button" value="Back" (click)="back()" class="btn btn-dark m-2">
+            </div>
+            <div *ngIf="sub" class="alert alert-success m-4"> Post Created Successful</div>
+            <div *ngIf="done" class="alert alert-danger m-4"> {{err}}</div>
+            <div *ngIf="sub1" class="alert alert-success m-4"> Post Updated Successful</div>
+        </div>
