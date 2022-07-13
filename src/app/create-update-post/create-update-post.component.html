@@ -12,18 +12,40 @@
                 <div *ngIf="text?.errors?.['required']"> text is required.
                 </div>
             </div>
-
             <label for="image">Image</label>
             <input type="text" class="form-control" id="image" formControlName="image" name="image">
-            <label for="Fname">Likes</label>
+            <div *ngIf="!image?.valid && image?.touched" class="alert alert-danger m-1">
+                <div *ngIf="image?.errors?.['required']"> image is required.
+                </div>
+            </div>
+            <label for="likes">Likes</label>
             <input type="text" class="form-control" id="likes" formControlName="likes" name="likes">
-            <label for="Fname">Tages</label>
+            <!--             <label for="tages">Tages</label>
             <input type="text" class="form-control" id="tages" formControlName="tages" name="tages">
+            <div *ngIf="!tages?.valid && tages?.touched" class="alert alert-danger m-1">
+                <div *ngIf="tages?.errors?.['required']"> tages is required.
+                </div>
+            </div> -->
+            <br>
+            <div formArrayName="tages">
+                Tages:
+                <button type="button" (click)="addTages('tag')" class="btn btn-primary"> Add </button>
+                <div *ngFor="let tag of tages.controls; index as i" class="m-2">
+                    <label>
+                        tag {{ i }}:
+                        <input type="text" class="form-control mt-2" [formControlName]="i">
+                    </label>
+                    <button class="btn btn-danger" (click)="removeTages(i)">Delete</button>
+                </div>
+                <div *ngIf="!tages?.valid && tages?.touched" class="alert alert-danger m-1">
+                    <div *ngIf="tages?.errors?.['required']"> tages is required.
+                    </div>
+                </div>
+            </div>
             <div class="form-group m-2">
                 <input type="submit" value="Submit" class="btn btn-success">
                 <input type="button" value="Back" (click)="back()" class="btn btn-dark m-2">
+                <div *ngIf="sub" class="alert alert-success m-4"> Post Created Successful</div>
+                <div *ngIf="done" class="alert alert-danger m-4"> {{err}}</div>
+                <div *ngIf="sub1" class="alert alert-success m-4"> Post Updated Successful</div>
             </div>
-            <div *ngIf="sub" class="alert alert-success m-4"> Post Created Successful</div>
-            <div *ngIf="done" class="alert alert-danger m-4"> {{err}}</div>
-            <div *ngIf="sub1" class="alert alert-success m-4"> Post Updated Successful</div>
-        </div>
