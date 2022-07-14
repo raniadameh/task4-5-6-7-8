@@ -50,7 +50,7 @@ export class CreateUpdatePostComponent implements OnInit {
           //tages: new FormControl(this.viewPost.tags, [Validators.required]),
           tages: new FormArray([], [Validators.required]),
           image: new FormControl(this.viewPost.image, [Validators.required]),
-          owner: new FormControl(this.ownerId, [Validators.required])
+          owner: new FormControl(this.viewPost.owner.firstName, [Validators.required])
         });
         this.viewPost.tags.forEach(tag => { this.addTages(tag) })
         this.postForm.controls['owner'].disable();

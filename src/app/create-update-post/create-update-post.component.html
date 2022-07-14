@@ -2,7 +2,7 @@
 <div>
     <form (ngSubmit)="onSubmit()" *ngIf="postForm" [formGroup]="postForm">
         <div class="form-group m-2">
-            <label for="owner">Owner ID</label>
+            <label for="owner">Owner Name</label>
             <input type="text" class="form-control" required id="image" formControlName="owner" name="owner">
             <label for="Fname">Post Text</label>
             <input type="text" required class="form-control" id="text" formControlName="text" name="text">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <label for="likes">Likes</label>
-            <input type="text" class="form-control" id="likes" formControlName="likes" name="likes">
+            <input type="number" class="form-control" id="likes" formControlName="likes" name="likes">
             <!--             <label for="tages">Tages</label>
             <input type="text" class="form-control" id="tages" formControlName="tages" name="tages">
             <div *ngIf="!tages?.valid && tages?.touched" class="alert alert-danger m-1">
