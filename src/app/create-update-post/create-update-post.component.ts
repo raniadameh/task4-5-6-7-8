@@ -5,7 +5,8 @@ import { identityRevealedValidator } from '../create-update-user-reactive/custom
 import { UserPostsService } from '../services/user-posts.service';
 import { formatCurrency, Location } from '@angular/common';
 import { Post, PostPreview } from '../models/post.model';
-import { List } from '../models/user.model';
+import { List, UserFull } from '../models/user.model';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-create-update-post',
@@ -22,8 +23,8 @@ export class CreateUpdatePostComponent implements OnInit {
   err!: string;
   postId!: string;
   viewPost!: Post;
-
-  constructor(private formBuilder: FormBuilder, private location: Location, private postsService: UserPostsService, private router: Router, private route: ActivatedRoute) { }
+  userview!: UserFull;
+  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private location: Location, private postsService: UserPostsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -31,15 +32,18 @@ export class CreateUpdatePostComponent implements OnInit {
       this.postId = params.get('postId') || ''
     });
     if (this.postId == '') {
-      this.postForm = new FormGroup({
-        text: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        likes: new FormControl(0, [Validators.required]),
-        //tages: new FormControl('', [Validators.required]),
-        tages: new FormArray([], [Validators.required]),
-        image: new FormControl('', [Validators.required]),
-        owner: new FormControl(this.ownerId, [Validators.required])
+      this.usersService.getUserId(this.ownerId).subscribe(response => {
+        this.userview = response;
+        this.postForm = new FormGroup({
+          text: new FormControl('', [Validators.required, Validators.minLength(6)]),
+          likes: new FormControl(0, [Validators.required]),
+          //tages: new FormControl('', [Validators.required]),
+          tages: new FormArray([], [Validators.required]),
+          image: new FormControl('', [Validators.required]),
+          owner: new FormControl(this.userview.firstName, [Validators.required])
+        });
+        this.postForm.controls['owner'].disable();
       });
-      this.postForm.controls['owner'].disable();
     }
     else if (this.postId != '') {
       this.postsService.getmyPost(this.postId).subscribe(response => {
