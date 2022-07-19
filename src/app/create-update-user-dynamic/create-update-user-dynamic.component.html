@@ -1,0 +1,14 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="create">
+        <app-form-input *ngFor="let input of inputs" [input]="input" [form]="form"></app-form-input>
+    </div>
+    <div *ngIf="update">
+        <app-form-input *ngFor="let input of inputs" [input]="input" [form]="form"></app-form-input>
+    </div>
+    <button class="btn btn-success my-3" type="submit" [disabled]="form.invalid">Submit</button>
+    <input type="button" value="Back" (click)="back()" class="btn btn-dark m-2">
+    <div *ngIf="sub" class="alert alert-success m-4"> User Created Successful</div>
+    <div *ngIf="done" class="alert alert-danger m-4"> {{err}}</div>
+    <div *ngIf="sub1" class="alert alert-success m-4"> User Updated Successful</div>
+    <div *ngIf="done1" class="alert alert-danger m-4"> {{err}}</div>
+</form>

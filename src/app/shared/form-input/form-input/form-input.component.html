@@ -1,0 +1,34 @@
+<div [formGroup]="form">
+    <label class="m-2" [attr.for]="input.key">{{ input.label }}</label>
+    <strong class="text-danger" *ngIf="input.validation['required']">*</strong>
+    <div [ngSwitch]="input.controlType">
+        <input class="form-group m-2 form-control" *ngSwitchCase="'text-box'" [id]="input.key" [type]="input.type"
+            [formControlName]="input.key">
+        <select class="form-group m-2 form-control" *ngSwitchCase="'dropdown'" [id]="input.key"
+            [formControlName]="input.key">
+            <option *ngFor="let option of input.options" [value]="option.key">
+                {{ option.value }}
+            </option>
+        </select>
+    </div>
+    <div class="alert alert-danger m-2" *ngIf="control?.invalid && control?.touched">
+        <div *ngIf="control?.errors?.['required']">
+            Required field
+        </div>
+        <div *ngIf="control?.errors?.['maxlength']">
+            MaxLength = 256 char
+        </div>
+        <div *ngIf="control?.errors?.['minlength']">
+            Min Length must be {{input.validation['minLength']}}
+        </div>
+        <div *ngIf="control?.errors?.['email']">
+            Type must be email
+        </div>
+        <div *ngIf="control?.errors?.['min']">
+            min number = {{input.validation['min']}}
+        </div>
+        <div *ngIf="control?.errors?.['max']">
+            max number = {{input.validation['max']}}
+        </div>
+    </div>
+</div>

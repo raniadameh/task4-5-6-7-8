@@ -44,7 +44,7 @@ export class UserPostsService {
     return this.http.put<Post>(`${this.baseURL}/post/${id}`, newUser, this.options);
   }
   handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('Inside handleError():', error);
+    //console.log('Inside handleError():', error);
     return throwError('some error occurred');
   }
 

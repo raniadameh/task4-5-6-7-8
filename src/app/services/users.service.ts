@@ -42,7 +42,7 @@ export class UsersService {
     });
   }
   handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('Inside handleError():', error);
+    //console.log('Inside handleError():', error);
     return throwError('some error occurred');
   }
 

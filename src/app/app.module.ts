@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateUpdateUserReactiveComponent } from './create-update-user-reactive/create-update-user-reactive.component';
 import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
 import { IdentityRevealedDirective } from './directives/identity-revealed.directive';
+import { CreateUpdateUserDynamicComponent } from './create-update-user-dynamic/create-update-user-dynamic.component';
+import { CreateUpdatePostDynamicComponent } from './create-update-post-dynamic/create-update-post-dynamic.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -31,6 +34,8 @@ import { IdentityRevealedDirective } from './directives/identity-revealed.direct
     CreateUpdateUserReactiveComponent,
     CreateUpdatePostComponent,
     IdentityRevealedDirective,
+    CreateUpdateUserDynamicComponent,
+    CreateUpdatePostDynamicComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { IdentityRevealedDirective } from './directives/identity-revealed.direct
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

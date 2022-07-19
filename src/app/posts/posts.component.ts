@@ -31,14 +31,14 @@ export class PostsComponent implements OnInit {
   }
   getPosts() {
     this.postsService.getPosts().subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.viewPost = response
     });
   }
   getPostsId(id: string) {
-    console.log()
+    //console.log()
     this.postsService.getPostsId(id).subscribe(response => {
-      console.log("getPostsId ", id, response);
+      //console.log("getPostsId ", id, response);
       this.viewPost = response;
       //this.getPosts;
     });
@@ -52,8 +52,8 @@ export class PostsComponent implements OnInit {
   }
   deletePost(id: string) {
     this.postsService.deletePost(id).subscribe(response => {
-      console.log(response),
-        this.getPostsId(this.id)
+      //console.log(response),
+      this.getPostsId(this.id)
     });
   }
 

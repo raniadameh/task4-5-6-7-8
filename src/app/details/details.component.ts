@@ -14,11 +14,11 @@ export class DetailsComponent implements OnInit {
   constructor(private usersService: UsersService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => this.getUserId(params['id']));
-    console.log("HELLO FROM DETAILS COMPONENT ID =", this.id)
+    //console.log("HELLO FROM DETAILS COMPONENT ID =", this.id)
   }
   getUserId(id: string) {
     this.usersService.getUserId(id).subscribe(response => {
-      console.log(id, response);
+      //console.log(id, response);
       this.viewid = response;
     });
   }

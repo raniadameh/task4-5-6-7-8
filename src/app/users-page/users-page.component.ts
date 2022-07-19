@@ -23,13 +23,13 @@ export class UsersPageComponent implements OnInit {
   }
   getUsers() {
     this.usersService.getUsers().subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.view = response
     });
   }
   getUserId(id: string) {
     this.usersService.getUserId(id).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.viewid = response;
       this.getUsers;
     });
@@ -45,8 +45,8 @@ export class UsersPageComponent implements OnInit {
   }
   deleteUser(id: string) {
     this.usersService.deleteUser(id).subscribe(response => {
-      console.log(response),
-        this.getUsers()
+      //console.log(response),
+      this.getUsers()
     });
   }
 
