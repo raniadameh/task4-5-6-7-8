@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post } from '../models/post.model';
 import { UserFull } from '../models/user.model';
@@ -40,7 +40,9 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
         this.userview = response;
         this.inputs = this.cps.getQuestions(this.userview);
         this.form = this.ig.generateFormGroup(this.inputs);
+        this.form.addControl('tags', new FormArray([]));
         this.form.controls['owner'].disable();
+
       });
     }
     if (this.postId != '') {
@@ -48,11 +50,22 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
         this.viewPost = response;
         this.inputs = this.ups.getQuestions(this.viewPost);
         this.form = this.ig.generateFormGroup(this.inputs);
+        this.form.addControl('tags', new FormArray([]));
+        this.viewPost.tags.forEach(tag => { this.addTages(tag) })
         this.form.controls['owner'].disable();
       });
     }
   }
+  get tags() {
+    return this.form.get('tags') as FormArray;
+  }
+  addTages(tag1: any) {
+    this.tags.push(this.formBuilder.control(tag1));
+  }
+  removeTages(i: number) {
+    this.tags.removeAt(i);
 
+  }
   onSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
@@ -61,7 +74,7 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
           text: this.form.get('post')?.value,
           image: this.form.get('image')?.value,
           likes: this.form.get('likes')?.value,
-          tags: []/* this.form.get('text')?.value */,
+          tags: this.form.get('tags')?.value,
           owner: this.ownerId
         })
           .subscribe({
@@ -80,7 +93,7 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
         const newAccount = {
           text: this.form.get('post')?.value,
           image: this.form.get('image')?.value,
-          //tags: this.form.get('text')?.value,
+          tags: this.form.get('tags')?.value,
           likes: this.form.get('likes')?.value
         };
         this.postsService.updatePost(this.postId, newAccount)

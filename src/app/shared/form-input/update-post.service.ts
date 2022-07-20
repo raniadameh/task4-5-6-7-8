@@ -13,7 +13,7 @@ export class UpdatePostService {
     const inputs = [
       new TextBoxComponent({
         key: 'owner',
-        value: viewPost.owner.firstName + ' ' + viewPost.owner.firstName,
+        value: viewPost.owner.firstName + ' ' + viewPost.owner.lastName,
         label: 'Owner name',
         validation: {},
         type: 'text',
@@ -39,7 +39,7 @@ export class UpdatePostService {
         key: 'likes',
         value: '' + viewPost.likes + '',
         label: 'Likes',
-        validation: {},
+        validation: { min: 0 },
         type: 'number',
         order: 4,
       }),

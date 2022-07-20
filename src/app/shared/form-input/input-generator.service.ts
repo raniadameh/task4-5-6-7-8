@@ -23,7 +23,7 @@ export class InputGeneratorService {
     if (input.validation?.['minLength']) {
       validators.push(Validators.minLength(input.validation['minLength']))
     }
-    if (input.validation?.['min']) {
+    if (input.validation?.['min'] !== undefined) {
       validators.push(Validators.min(input.validation['min']))
     }
     if (input.validation?.['max']) {

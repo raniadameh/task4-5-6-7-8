@@ -39,7 +39,7 @@ export class CreatePostService {
         key: 'like',
         value: '0',
         label: 'Likes',
-        validation: { min: '0' },
+        validation: { min: 0 },
         type: 'number',
         order: 4,
       }),

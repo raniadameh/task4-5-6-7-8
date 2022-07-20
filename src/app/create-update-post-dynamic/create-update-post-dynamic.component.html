@@ -2,6 +2,21 @@
     <div>
         <app-form-input *ngFor="let input of inputs" [input]="input" [form]="form"></app-form-input>
     </div>
+    <div formArrayName="tags">
+        Tags:
+        <button type="button" (click)="addTages(' ')" class="btn btn-primary"> Add </button>
+        <div *ngFor="let tag of tags.controls; index as i" class="m-2">
+            <label>
+                Tag {{ i+1 }}:
+                <input type="text" class="form-control mt-2" [formControlName]="i">
+            </label>
+            <button class="btn btn-danger" (click)="removeTages(i)">Delete</button>
+        </div>
+        <!-- <div *ngIf="!tags?.valid && tags?.touched" class="alert alert-danger m-1">
+            <div *ngIf="tags?.errors?.['required']"> tages is required.
+            </div>
+        </div> -->
+    </div>
     <button class="btn btn-success my-3" type="submit">Submit</button>
     <input type="button" value="Back" (click)="back()" class="btn btn-dark m-2">
     <div *ngIf="sub" class="alert alert-success m-4"> Post Created Successful</div>
