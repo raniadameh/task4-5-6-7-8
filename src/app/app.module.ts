@@ -18,6 +18,10 @@ import { IdentityRevealedDirective } from './directives/identity-revealed.direct
 import { CreateUpdateUserDynamicComponent } from './create-update-user-dynamic/create-update-user-dynamic.component';
 import { CreateUpdatePostDynamicComponent } from './create-update-post-dynamic/create-update-post-dynamic.component';
 import { SharedModule } from './shared/shared.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

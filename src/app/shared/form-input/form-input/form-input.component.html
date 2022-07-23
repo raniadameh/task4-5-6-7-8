@@ -1,15 +1,13 @@
 <div [formGroup]="form">
-    <label class="m-2" [attr.for]="input.key">{{ input.label }}</label>
-    <strong class="text-danger" *ngIf="input.validation['required']">*</strong>
     <div [ngSwitch]="input.controlType">
-        <input class="form-group m-2 form-control" *ngSwitchCase="'text-box'" [id]="input.key" [type]="input.type"
-            [formControlName]="input.key">
-        <select class="form-group m-2 form-control" *ngSwitchCase="'dropdown'" [id]="input.key"
-            [formControlName]="input.key">
-            <option *ngFor="let option of input.options" [value]="option.key">
-                {{ option.value }}
-            </option>
-        </select>
+        <mat-form-field appearance="outline" class=' m-2'>
+            <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
+            <input matInput *ngSwitchCase="'text-box'" [id]="input.key" [type]="input.type"
+                [formControlName]="input.key">
+            <mat-select *ngSwitchCase="'dropdown'" [id]="input.key" [formControlName]="input.key">
+                <mat-option *ngFor="let option of input.options" [value]="option.key"> {{ option.value }} </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <div class="alert alert-danger m-2" *ngIf="control?.invalid && control?.touched">
         <div *ngIf="control?.errors?.['required']">
