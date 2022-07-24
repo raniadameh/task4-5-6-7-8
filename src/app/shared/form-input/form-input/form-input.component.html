@@ -1,6 +1,6 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class=' m-2'>
     <div [ngSwitch]="input.controlType">
-        <mat-form-field appearance="outline" class=' m-2'>
+        <mat-form-field appearance="outline" class=' ms-2'>
             <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
             <input matInput *ngSwitchCase="'text-box'" [id]="input.key" [type]="input.type"
                 [formControlName]="input.key">
@@ -9,7 +9,7 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div class="alert alert-danger m-2" *ngIf="control?.invalid && control?.touched">
+    <mat-error class="alert alert-danger ms-2 " *ngIf="control?.invalid && control?.touched">
         <div *ngIf="control?.errors?.['required']">
             Required field
         </div>
@@ -28,5 +28,5 @@
         <div *ngIf="control?.errors?.['max']">
             max number = {{input.validation['max']}}
         </div>
-    </div>
+    </mat-error>
 </div>
