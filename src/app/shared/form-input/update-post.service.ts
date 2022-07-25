@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
 import { InputBase } from './input-base';
-import { TextBoxComponent } from './text-box/text-box.component';
+import { TextBoxService } from "./text-box";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UpdatePostService {
   constructor() { }
   getQuestions(viewPost: Post): InputBase<any>[] {
     const inputs = [
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'owner',
         value: viewPost.owner.firstName + ' ' + viewPost.owner.lastName,
         label: 'Owner name',
@@ -19,7 +19,7 @@ export class UpdatePostService {
         type: 'text',
         order: 1,
       }),
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'post',
         value: viewPost.text,
         label: 'Post text',
@@ -27,7 +27,7 @@ export class UpdatePostService {
         type: 'text',
         order: 2,
       }),
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'image',
         value: viewPost.image,
         label: 'Enter Image',
@@ -35,7 +35,7 @@ export class UpdatePostService {
         type: 'url',
         order: 3,
       }),
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'likes',
         value: '' + viewPost.likes + '',
         label: 'Likes',

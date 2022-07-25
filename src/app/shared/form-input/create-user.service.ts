@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InputBase } from './input-base';
-import { TextBoxComponent } from './text-box/text-box.component';
+import { TextBoxService } from "./text-box";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class CreateUserService {
   constructor() { }
   getQuestions(): InputBase<any>[] {
     const inputs = [
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'firstName',
         value: '',
         label: 'Enter First Name',
@@ -18,7 +18,7 @@ export class CreateUserService {
         type: 'text',
         order: 1,
       }),
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'lastName',
         value: '',
         label: 'Enter Last Name',
@@ -26,7 +26,7 @@ export class CreateUserService {
         type: 'text',
         order: 2,
       }),
-      new TextBoxComponent({
+      new TextBoxService({
         key: 'email',
         value: '',
         label: 'Enter email',

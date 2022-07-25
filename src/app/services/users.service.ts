@@ -1,7 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { catchError, Observable, throwError } from 'rxjs';
 import { CreateUserModel, List, UserFull, UserPreview } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
@@ -35,11 +34,6 @@ export class UsersService {
   }
   updateUser(id: string, newUser: any): Observable<UserFull> {
     return this.http.put<UserFull>(`${this.baseURL}/user/${id}`, newUser, this.options);
-  }
-  fullUser(id: string): Observable<List<UserFull>> {
-    return this.http.get<List<UserFull>>(`${this.baseURL}/user/${id}`, {
-      ...this.options
-    });
   }
   handleError(error: HttpErrorResponse): Observable<never> {
     //console.log('Inside handleError():', error);
