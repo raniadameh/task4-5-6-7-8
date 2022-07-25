@@ -1,13 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CreateUserService } from '../shared/form-input/create-user.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserFull } from '../models/user.model';
+import { UsersService } from '../services/users.service';
 import { InputBase } from '../shared/form-input/input-base';
 import { InputGeneratorService } from '../shared/form-input/input-generator.service';
-import { Location } from '@angular/common';
-import { UpdateUserService } from '../shared/form-input/update-user.service';
-import { UsersService } from '../services/users.service';
-import { UserFull } from '../models/user.model';
+import { PutInputService } from '../shared/form-input/put-input.service';
 
 @Component({
   selector: 'app-create-update-user-dynamic',
@@ -27,14 +26,14 @@ export class CreateUpdateUserDynamicComponent implements OnInit {
   err = '';
   viewid!: UserFull;
 
-  constructor(private location: Location, private ig: InputGeneratorService, private cus: CreateUserService, private uus: UpdateUserService, private route: ActivatedRoute, private usersService: UsersService) { }
+  constructor(private location: Location, private ig: InputGeneratorService, private putInput: PutInputService, private route: ActivatedRoute, private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.id = params.get('id') || '';
       if (this.id == '') {
         this.create = true;
-        this.inputs = this.cus.getQuestions();
+        this.inputs = this.putInput.createUserInput();
         this.form = this.ig.generateFormGroup(this.inputs);
       }
       else if (this.id != '') {
@@ -42,7 +41,7 @@ export class CreateUpdateUserDynamicComponent implements OnInit {
           response => {
             this.viewid = response;
             this.update = true;
-            this.inputs = this.uus.getQuestions(this.viewid);
+            this.inputs = this.putInput.updateUserInput(this.viewid);
             this.form = this.ig.generateFormGroup(this.inputs);
             this.form.controls['email'].disable();
           }

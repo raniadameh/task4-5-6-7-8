@@ -1,15 +1,14 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../models/post.model';
 import { UserFull } from '../models/user.model';
 import { UserPostsService } from '../services/user-posts.service';
 import { UsersService } from '../services/users.service';
-import { CreatePostService } from '../shared/form-input/create-post.service';
 import { InputBase } from '../shared/form-input/input-base';
 import { InputGeneratorService } from '../shared/form-input/input-generator.service';
-import { UpdatePostService } from '../shared/form-input/update-post.service';
-import { Location } from '@angular/common';
+import { PutInputService } from '../shared/form-input/put-input.service';
 
 @Component({
   selector: 'app-create-update-post-dynamic',
@@ -28,7 +27,7 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
   postId!: string;
   viewPost!: Post;
   userview!: UserFull;
-  constructor(private ig: InputGeneratorService, private cps: CreatePostService, private ups: UpdatePostService, private usersService: UsersService, private formBuilder: FormBuilder, private location: Location, private postsService: UserPostsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private ig: InputGeneratorService, private putInput: PutInputService, private usersService: UsersService, private formBuilder: FormBuilder, private location: Location, private postsService: UserPostsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -38,7 +37,7 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
     if (this.postId == '') {
       this.usersService.getUserId(this.ownerId).subscribe(response => {
         this.userview = response;
-        this.inputs = this.cps.getQuestions(this.userview);
+        this.inputs = this.putInput.createPostInput(this.userview);
         this.form = this.ig.generateFormGroup(this.inputs);
         this.form.addControl('tags', new FormArray([]));
         this.form.controls['owner'].disable();
@@ -48,7 +47,7 @@ export class CreateUpdatePostDynamicComponent implements OnInit {
     if (this.postId != '') {
       this.postsService.getmyPost(this.postId).subscribe(response => {
         this.viewPost = response;
-        this.inputs = this.ups.getQuestions(this.viewPost);
+        this.inputs = this.putInput.updatePostInput(this.viewPost);
         this.form = this.ig.generateFormGroup(this.inputs);
         this.form.addControl('tags', new FormArray([]));
         this.viewPost.tags.forEach(tag => { this.addTages(tag) })
