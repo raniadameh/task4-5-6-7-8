@@ -20,7 +20,6 @@ describe('UserPostsService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
 
   });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -70,7 +69,6 @@ describe('UserPostsService', () => {
     expect(requests[0].request.body).toEqual(payload);
     requests[0].flush(post);
   });
-
   it('deletePost() should send a request to delete post by id', () => {
     const post: any = {
       id: '1111',

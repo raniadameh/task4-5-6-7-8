@@ -20,16 +20,12 @@ describe('AppComponent', () => {
         RouterLinkStubDirective,
       ],
     }).compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
     routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
     fixture.detectChanges();
   });
-
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });

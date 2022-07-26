@@ -6,12 +6,10 @@ import { TextBoxService } from './text-box';
 
 describe('InputGeneratorService', () => {
   let service: InputGeneratorService;
-
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(InputGeneratorService);
   });
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
