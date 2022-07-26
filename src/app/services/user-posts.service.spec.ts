@@ -82,7 +82,7 @@ describe('UserPostsService', () => {
       owner: { id: 'someId', title: 'a', firstName: 'a', lastName: 'a', picture: 'a' },
       link: ''
     };
-    service.deletePost(post.id).subscribe(response => { console.log(response); expect(response).toEqual(post) });
+    service.deletePost(post.id).subscribe(response => { expect(response).toEqual(post) });
     const req = httpTestingController.expectOne(`${service.baseURL}/post/${post.id}`);
     expect(req.request.method).toEqual('DELETE');
     req.flush(post);

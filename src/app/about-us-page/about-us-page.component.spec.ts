@@ -5,12 +5,11 @@ import { AboutUsPageComponent } from './about-us-page.component';
 describe('AboutUsPageComponent', () => {
   let component: AboutUsPageComponent;
   let fixture: ComponentFixture<AboutUsPageComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutUsPageComponent ]
+      declarations: [AboutUsPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AboutUsPageComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,10 @@ describe('AboutUsPageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should have a paragraph element with content `about-us-page works!`', () => {
+    const Element: HTMLElement = fixture.nativeElement;
+    const paragraphElement = Element.querySelector('p');
+    expect(paragraphElement?.textContent).toContain('about-us-page works!');
   });
 });

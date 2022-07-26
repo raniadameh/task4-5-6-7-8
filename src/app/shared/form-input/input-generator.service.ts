@@ -26,7 +26,7 @@ export class InputGeneratorService {
     if (input.validation?.['min'] !== undefined) {
       validators.push(Validators.min(input.validation['min']))
     }
-    if (input.validation?.['max']) {
+    if (input.validation?.['max'] !== undefined) {
       validators.push(Validators.max(input.validation['max']))
     }
     return validators;

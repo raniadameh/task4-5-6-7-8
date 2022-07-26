@@ -8,9 +8,9 @@ describe('HomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      declarations: [HomePageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
@@ -19,5 +19,10 @@ describe('HomePageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should have a paragraph element with content `WELCOME at home-page`', () => {
+    const Element: HTMLElement = fixture.nativeElement;
+    const paragraphElement = Element.querySelector('p');
+    expect(paragraphElement?.textContent).toContain('WELCOME at home-page');
   });
 });

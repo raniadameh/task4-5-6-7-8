@@ -40,11 +40,11 @@ export class PutInputService {
     ];
     return inputs;
   }
-  updateUserInput(viewid: UserFull): InputBase<any>[] {
+  updateUserInput(userview: UserFull): InputBase<any>[] {
     const inputs = [
       new TextBoxService({
         key: 'firstName',
-        value: viewid?.firstName,
+        value: userview?.firstName,
         label: 'Enter First Name',
         validation: { required: true, minLength: 2 },
         type: 'text',
@@ -52,7 +52,7 @@ export class PutInputService {
       }),
       new TextBoxService({
         key: 'lastName',
-        value: viewid?.lastName,
+        value: userview?.lastName,
         label: 'Enter Last Name',
         validation: { required: true, minLength: 2 },
         type: 'text',
@@ -60,7 +60,7 @@ export class PutInputService {
       }),
       new TextBoxService({
         key: 'email',
-        value: viewid?.email,
+        value: userview?.email,
         label: 'Enter email',
         validation: { required: true },
         type: 'email',
@@ -69,7 +69,7 @@ export class PutInputService {
       new DropdownService({
         key: 'title',
         label: 'Title',
-        value: viewid?.title,
+        value: userview?.title,
         options: [
           { key: 'mr', value: 'mr' },
           { key: 'ms', value: 'ms' },
@@ -83,7 +83,7 @@ export class PutInputService {
       new DropdownService({
         key: 'gender',
         label: 'Gender',
-        value: viewid?.gender,
+        value: userview?.gender,
         options: [
           { key: 'male', value: 'male' },
           { key: 'female', value: 'female' },
@@ -93,7 +93,7 @@ export class PutInputService {
       }),
       new TextBoxService({
         key: 'phone',
-        value: viewid?.phone,
+        value: userview?.phone,
         label: 'Enter phone',
         type: 'number',
         order: 6,

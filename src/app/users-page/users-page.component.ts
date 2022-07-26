@@ -38,14 +38,13 @@ export class UsersPageComponent implements OnInit {
     this.router.navigate(['user-details', `${id}`], { queryParams: { id: id } });
   }
   createUser() {
-    this.router.navigate(['/create-update'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['/create-update']);
   }
   updateUser(id: string) {
     this.router.navigate(['/create-update', `${id}`], { queryParams: { id: id } });
   }
   deleteUser(id: string) {
     this.usersService.deleteUser(id).subscribe(response => {
-      //console.log(response),
       this.getUsers()
     });
   }
